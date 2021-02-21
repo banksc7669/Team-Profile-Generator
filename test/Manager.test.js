@@ -1,28 +1,20 @@
-const Word = require("../lib/Word");
+const Manager = require("../lib/Manager");
+const Employee = require("../lib/Employee");
 
-describe("Word class", () => {
-  describe("guessLetter", () => {
-    it("Correct guess returns true", () => {
-      expect(new Word("fish").guessLetter("i")).toBe(true);
-    });
+test("Can set office number via constructor argument", () => {
+  const testValue = 100;
+  const e = new Manager("Foo", 1, "test@test.com", testValue);
+  expect(e.officeNumber).toBe(testValue);
+});
 
-    it("Incorrect guess returns false", () => {
-      expect(new Word("fish").guessLetter("o")).toBe(false);
-    });
-  });
+test('getRole() should return "Manager"', () => {
+  const testValue = "Manager";
+  const e = new Manager("Foo", 1, "test@test.com", 100);
+  expect(e.getRole()).toBe(testValue);
+});
 
-  describe("guessedCorrectly ", () => {
-    it("returns true if all letters are correct", () => {
-      const word = new Word("hi");
-      word.guessLetter("h");
-      word.guessLetter("i");
-      expect(word.guessedCorrectly()).toBe(true);
-    });
-    it("returns false if at least one letter is incorrect", () => {
-      const word = new Word("hi");
-      word.guessLetter("h");
-      word.guessLetter("a");
-      expect(word.guessedCorrectly()).toBe(false);
-    });
-  });
+test("Can get office number via getOffice()", () => {
+  const testValue = 100;
+  const e = new Manager("Foo", 1, "test@test.com", testValue);
+  expect(e.getOfficeNumber()).toBe(testValue);
 });
